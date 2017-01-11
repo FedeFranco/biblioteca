@@ -8,6 +8,7 @@ use app\models\AlquilerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * AquileresController implements the CRUD actions for Alquiler model.
@@ -26,6 +27,20 @@ class AquileresController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+
+            'access'=>['class'=>AccessControl::className(),
+            'only'=>['index'],
+            'rules'=>[
+                 [
+                     'allow'=>true,
+                     'actions'=>['index'],
+                     'roles'=>['@'],
+                     'matchCallback' => function ($rule, $action) {
+                            return Yii::$app->user->identity->nombre === 'admon';
+                        }
+                 ]
+            ],
+        ],
         ];
     }
 
