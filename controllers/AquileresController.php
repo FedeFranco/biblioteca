@@ -36,7 +36,7 @@ class AquileresController extends Controller
                      'actions'=>['index'],
                      'roles'=>['@'],
                      'matchCallback' => function ($rule, $action) {
-                            return Yii::$app->user->identity->nombre === 'admon';
+                            return Yii::$app->user->identity->nombre === 'pepe';
                         }
                  ]
             ],
