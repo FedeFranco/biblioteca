@@ -59,7 +59,7 @@ class Alquiler extends \yii\db\ActiveRecord
 
         $this->libros_id = Libro::find()->select('id')
         ->where(['titulo'=>$libro])->scalar();
-
+        
         $this->save();
         return true;
     }

@@ -13,11 +13,11 @@ use app\models\Socio;
     ?>
     <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'socio')->dropDownList($arraySocios[0]) ?>
+        <?= $form->field($model, 'socio')/*->dropDownList($arraySocios)*/ ?>
         <?= $form->field($model, 'libro') ?>
 
         <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Submit'), ['class' => 'btn btn-primary']) ?>
+            <?= Html::submitButton(Yii::t('app', 'Alquilar'), ['class' => 'btn btn-primary']) ?>
         </div>
     <?php ActiveForm::end(); ?>
 

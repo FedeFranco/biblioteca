@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use Yii;
 use app\models\Alquiler;
+use app\models\AlquilerForm;
 use app\models\AlquilerSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
@@ -57,6 +58,20 @@ class AquileresController extends Controller
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
         ]);
+    }
+
+    public function actionAlquilar()
+    {
+        $model = new AlquilerForm;
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            $al = new Alquiler;
+            if ($al->alquiler($model->socio,$model->libro)) {
+                return $this->render('alquilar',['model'=>$model]);
+            }
+
+        }else {
+            return $this->render('alquilar',['model'=>$model]);
+        }
     }
 
     /**

@@ -4,6 +4,7 @@ namespace app\models;
 
 use Yii;
 use app\models\Alquiler;
+use app\models\Libro;
 
 /**
  * This is the model class for table "socios".
@@ -51,5 +52,17 @@ class Socio extends \yii\db\ActiveRecord
     public function getAlquileres()
     {
         return $this->hasMany(Alquiler::className(), ['socios_id' => 'id'])->inverseOf('socios');
+    }
+
+    public function getSuLibro()
+    {
+        $elId = $this->getAlquileres()->select('libros_id')->scalar();
+        if (!$elId) {
+            return "Este socio no tiene libro";
+        }else {
+            $lib = Libro::find()->select('titulo')->where(['id'=>$elId])->scalar();
+            return $lib;
+        }
+
     }
 }
