@@ -14,6 +14,9 @@ use Yii;
  */
 class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
 {
+    const ESC_CREATE = 'create';
+    public $pass;
+    public $passConfirma;
     /**
      * @inheritdoc
      */
