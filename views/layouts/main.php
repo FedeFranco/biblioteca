@@ -33,14 +33,15 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
-    echo Nav::widget([
-        'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Home', 'url' => ['/site/index']],
-            ['label' => 'About', 'url' => ['/site/about']],
-            ['label' => 'Contact', 'url' => ['/site/contact']],
+        $items = [
+            ['label' => 'Princial', 'url' => ['/site/index']],
+            ['label' => 'Libros', 'url' => ['/libros/index']],
+            ['label' => 'Socios', 'url' => ['/socios/index']],
             Yii::$app->user->isGuest ? (
-                ['label' => 'Login', 'url' => ['/site/login']]
+                ['label' => 'Login', 'items' =>[['label' => 'Loguearse',
+                                            'url' => ['/site/login']],
+                                            ['label' => 'Registrarse',
+                                            'url' => ['/usuarios/create']]]]
             ) : (
                 '<li>'
                 . Html::beginForm(['/site/logout'], 'post')
@@ -50,8 +51,17 @@ AppAsset::register($this);
                 )
                 . Html::endForm()
                 . '</li>'
-            )
-        ],
+
+            )];
+
+        if (!(Yii::$app->user->isGuest)) {
+        array_unshift($items, ['label' => 'Configuración', 'url' => ['usuarios/update']]);
+        }
+
+
+    echo Nav::widget([
+        'options' => ['class' => 'navbar-nav navbar-right'],
+        'items'=>$items
     ]);
     NavBar::end();
     ?>

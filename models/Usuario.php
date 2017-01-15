@@ -32,10 +32,13 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return [
             [['nombre', 'password'], 'required'],
+            [['pass','passConfirma'],'required','on'=>self::ESC_CREATE],
             [['nombre'], 'string', 'max' => 15],
+            [['pass'],'safe'],
             [['password'], 'string', 'max' => 60],
             [['token'], 'string', 'max' => 32],
             [['nombre'], 'unique'],
+            [['passConfirma'],'confirmaPass'],
         ];
     }
 
@@ -49,6 +52,8 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'nombre' => 'Nombre',
             'password' => 'Password',
             'token' => 'Token',
+            'pass'=>'Contraseña actual',
+            'passConfirma' => 'Confirmar Contraseña',
         ];
     }
 
@@ -111,5 +116,27 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     public function validarPassword($password)
     {
         return Yii::$app->security->validatePassword($password, $this->password);
+    }
+
+    public function confirmaPass($params,$attribute)
+    {
+        if ($this->pass !== $this->passConfirma) {
+            $this->addError($attribute, 'Las contraseñas no coinciden');
+        }
+    }
+
+    public function beforeSave($insert)
+    {
+        if (parent::beforeSave($insert)) {
+            if ($this->pass != '' || $insert) {
+                $this->password = Yii::$app->security->generatePasswordHash($this->pass);
+            }
+            if ($insert) {
+                $this->token = Yii::$app->security->generateRandomString();
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 }
