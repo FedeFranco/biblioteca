@@ -49,7 +49,7 @@ class Socio extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAlquileres()
+    public function getAlquiler()
     {
         return $this->hasMany(Alquiler::className(), ['socios_id' => 'id'])->inverseOf('socios');
     }

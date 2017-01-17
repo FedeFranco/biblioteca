@@ -56,8 +56,8 @@ class Libro extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getAlquilan()
+    public function getAlquiler()
     {
-        return $this->hasMany(Alquilan::className(), ['libros_id' => 'id'])->inverseOf('libros');
+        return $this->hasMany(Alquiler::className(), ['libros_id' => 'id'])->inverseOf('libros');
     }
 }

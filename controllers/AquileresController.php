@@ -10,6 +10,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
+use app\models\Socio;
 
 /**
  * AquileresController implements the CRUD actions for Alquiler model.
@@ -81,7 +82,7 @@ class AquileresController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+            return $this->render('view', [
             'model' => $this->findModel($id),
         ]);
     }
