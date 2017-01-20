@@ -27,7 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'socios_id',
             'libros_id',
-            'fecha',
+            'fecha:relativeTime',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

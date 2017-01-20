@@ -11,6 +11,8 @@ use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use app\models\Socio;
+use app\models\Libro;
+use yii\data\ActiveDataProvider;
 
 /**
  * AquileresController implements the CRUD actions for Alquiler model.
@@ -52,12 +54,16 @@ class AquileresController extends Controller
      */
     public function actionIndex()
     {
+        $alqui = new Alquiler;
+        $fec = $alqui->tomarFecha();
+
         $searchModel = new AlquilerSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'fec' => $fec
         ]);
     }
 
@@ -82,6 +88,7 @@ class AquileresController extends Controller
      */
     public function actionView($id)
     {
+
             return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

@@ -59,7 +59,7 @@ class Alquiler extends \yii\db\ActiveRecord
 
         $this->libros_id = Libro::find()->select('id')
         ->where(['titulo'=>$libro])->scalar();
-        
+
         $this->save();
         return true;
     }
@@ -70,6 +70,7 @@ class Alquiler extends \yii\db\ActiveRecord
     public function getLibros()
     {
         return $this->hasOne(Libro::className(), ['id' => 'libros_id'])->inverseOf('alquiler');
+
     }
 
     /**
@@ -78,5 +79,19 @@ class Alquiler extends \yii\db\ActiveRecord
     public function getSocios()
     {
         return $this->hasOne(Socio::className(), ['id' => 'socios_id'])->inverseOf('alquiler');
+    }
+
+    public function getDev()
+    {   $w = $this->getSocios()->select('nombre')->where(['id'=>'1'])->scalar();
+        var_dump($w); die();
+        return $w;
+    }
+
+    public function tomarFecha()
+    {
+        $fecha = $this::find()->max('fecha');
+        $socio = Socio::find()->joinWith('alquiler')->select('nombre')->where(['fecha'=>$fecha])->scalar();
+
+        return $socio;
     }
 }

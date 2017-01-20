@@ -40,17 +40,13 @@ class Libro extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'titulo' => 'Titulo',
-        ];
+            'titulo' => 'Título',
+          ];
     }
 
     public function getLib()
-    {  if ($this->titulo[0] === 'M') {
-        return $this->titulo;}
-        else {
+    {
         return $this->titulo;
-        }
-
     }
 
     /**

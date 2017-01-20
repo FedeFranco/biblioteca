@@ -56,7 +56,8 @@ class Socio extends \yii\db\ActiveRecord
 
     public function getSuLibro()
     {
-        $elId = $this->getAlquileres()->select('libros_id')->scalar();
+        $elId = $this->getAlquiler()->select('libros_id')->scalar();
+        var_dump($elId); die();
         if (!$elId) {
             return "Este socio no tiene libro";
         }else {
