@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\imagine\Image;
 
 /**
  * This is the model class for table "usuario".
@@ -17,6 +18,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     const ESC_CREATE = 'create';
     public $pass;
     public $passConfirma;
+    public $imageFile;
     /**
      * @inheritdoc
      */
@@ -54,6 +56,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'token' => 'Token',
             'pass'=>'Contraseña actual',
             'passConfirma' => 'Confirmar Contraseña',
+            'imageFile' => 'Imagen',
         ];
     }
 
@@ -125,6 +128,14 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         }
     }
 
+
+    public function imagen()
+    {
+        Image::crop(Yii::getAlias('@webroot/img/text-photo.jpg'))
+        ->save(Yii::getAlias('@runtime/crop-photo.jpg'), ['quality' => 80]);
+    }
+
+
     public function beforeSave($insert)
     {
         if (parent::beforeSave($insert)) {
@@ -138,5 +149,12 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         } else {
             return false;
         }
+    }
+
+    public function getImageUrl()
+    {
+        $uploads = Yii::getAlias('@uploads');
+        $ruta = "$uploads/{$this->id}.png";
+        return file_exists($ruta) ? "/$ruta" : "/$uploads/default.png";
     }
 }
