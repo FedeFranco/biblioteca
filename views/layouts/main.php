@@ -8,6 +8,8 @@ use yii\bootstrap\Nav;
 use yii\bootstrap\NavBar;
 use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\bootstrap\ActiveForm;
+
 
 AppAsset::register($this);
 ?>
@@ -32,7 +34,15 @@ AppAsset::register($this);
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
-    ]);
+    ]); ?>
+
+    <div class="checkbox" style="color: white">
+        <?= Yii::$app->request->get("r") ?>
+    </div>
+
+
+    <?php
+
         $items = [
             ['label' => 'Princial', 'url' => ['/site/index']],
             ['label' => 'Libros', 'url' => ['/libros/index']],
@@ -76,7 +86,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Biblioteca Josemari We r Gamers <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

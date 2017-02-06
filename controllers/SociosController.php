@@ -35,13 +35,16 @@ class SociosController extends Controller
      */
     public function actionIndex()
     {
+        $model = Socio::find()->all();
         $searchModel = new SocioSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+            'model' => $model,
         ]);
+
     }
 
 
@@ -105,6 +108,20 @@ class SociosController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+
+    public function actionSearch($titulo)
+    {
+        $searchModel = new SocioSearch();
+        $dataProvider = new ActiveDataProvider([
+            'query' => Socio::find()->orderBy(['nombre' => SORT_DESC,
+            'pagination' => ['pageSize' => 10]])
+        ]);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider
+        ]);
     }
 
     /**

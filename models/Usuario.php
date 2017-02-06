@@ -54,7 +54,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             'nombre' => 'Nombre',
             'password' => 'Password',
             'token' => 'Token',
-            'pass'=>'Contraseña actual',
+            'pass'=>'Contraseña',
             'passConfirma' => 'Confirmar Contraseña',
             'imageFile' => 'Imagen',
         ];
@@ -121,7 +121,7 @@ class Usuario extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
         return Yii::$app->security->validatePassword($password, $this->password);
     }
 
-    public function confirmaPass($params,$attribute)
+    public function confirmaPass($params, $attribute)
     {
         if ($this->pass !== $this->passConfirma) {
             $this->addError($attribute, 'Las contraseñas no coinciden');

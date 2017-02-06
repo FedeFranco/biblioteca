@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use app\models\Upload;
+use app\controllers\Url;
 
 /**
  * UsuariosController implements the CRUD actions for Usuario model.
@@ -41,6 +42,8 @@ class UsuariosController extends Controller
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
+
+
         ]);
     }
 
@@ -63,9 +66,14 @@ class UsuariosController extends Controller
      */
     public function actionCreate()
     {
-        $model = new Usuario(['scenario'=> Usuario::ESC_CREATE]);
+        $model = new Usuario([
+            'scenario' => Usuario::ESC_CREATE
+        ]);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+            echo "hola";
+            $model->activacion = Yii::$app->security->generateRandomString();
+            $model->save(false);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [

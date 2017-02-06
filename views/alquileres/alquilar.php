@@ -9,16 +9,6 @@ use app\models\Socio;
 /* @var $form ActiveForm */
 ?>
 <div class="alquilar">
-<?php $arraySocios = Socio::find()->select('nombre')->asArray()->all();
-    ?>
-    <?php $form = ActiveForm::begin(); ?>
 
-        <?= $form->field($model, 'socio')->dropDownList($arraySocios) ?>
-        <?= $form->field($model, 'libro') ?>
-
-        <div class="form-group">
-            <?= Html::submitButton(Yii::t('app', 'Alquilar Libro'), ['class' => 'btn btn-primary']) ?>
-        </div>
-    <?php ActiveForm::end(); ?>
-
-</div><!-- alquilar -->
+<?= echo $model ?>
+</div>
