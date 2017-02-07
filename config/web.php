@@ -13,7 +13,11 @@ $config = [
     'modules' => [
         'user' => [
             'class' => 'dektrium\user\Module',
+            'controllerMap' => [
+           'admin' => 'app\controllers\AdminController'
+            ],
         ],
+
     ],
 
     'components' => [
@@ -21,13 +25,21 @@ $config = [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'OODBMbivDm8pTXa0A_NmbmX1GbqyuWsJ',
         ],
+            'view' => [
+                'theme' => [
+                    'pathMap' => [
+                        '@dektrium/user/views/registration' => '@app/views/registration'
+                    ],
+                ],
+            ],
+
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
-        'user' => [
+        /*'user' => [
             'identityClass' => 'app\models\Usuario',
             'enableAutoLogin' => true,
-        ],
+        ],*/
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
@@ -41,7 +53,7 @@ $config = [
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
                 'host' => 'smtp.gmail.com',
-                'username' =>'bibliotecasuazo1@gmail.com',
+                'username' =>'moonluna189@gmail.com',
                 'password' => getenv('PASS'),
                 'port' => '587',
                 'encryption' => 'tls',
@@ -57,17 +69,16 @@ $config = [
                 ],
             ],
         ],
-        'db' => require(__DIR__ . '/db.php'),
+            'db' => require(__DIR__ . '/db.php'),
 
         /*'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-            ],
-        ],*/
-
+            ],*/
     ],
-    'params' => $params,
+            'params' => $params,
+            'language' => 'es_ES',
 ];
 
 if (YII_ENV_DEV) {

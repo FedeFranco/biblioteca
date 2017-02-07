@@ -26,3 +26,10 @@ create table usuario(
     password varchar(60) not null,
     token varchar(32)
 );
+
+drop table if exists resenas cascade;
+create table resena(
+    id bigserial constraint pk_resenias,
+    titulo varchar(20) not null
+
+);

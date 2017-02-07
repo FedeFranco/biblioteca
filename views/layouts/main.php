@@ -35,12 +35,9 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]); ?>
-
-    <div class="checkbox" style="color: white">
-        <?= Yii::$app->request->get("r") ?>
+    <div class="checkbox" style="color: white; font-size:30px">
+        <?= $ex =  Yii::$app->request->get("categoria_id") ?>
     </div>
-
-
     <?php
 
         $items = [
@@ -51,12 +48,12 @@ AppAsset::register($this);
                 ['label' => 'Login', 'items' =>[['label' => 'Loguearse',
                                             'url' => ['/site/login']],
                                             ['label' => 'Registrarse',
-                                            'url' => ['/usuarios/create']]]]
+                                            'url' => ['/user/registration/register']]]]
             ) : (
                 '<li>'
-                . Html::beginForm(['/site/logout'], 'post')
+                . Html::beginForm(['/user/security/logout'], 'post')
                 . Html::submitButton(
-                    'Logout (' . Yii::$app->user->identity->nombre . ')',
+                    'Logout (' . Yii::$app->user->identity->username . ')',
                     ['class' => 'btn btn-link logout']
                 )
                 . Html::endForm()
