@@ -21,8 +21,8 @@ if ($url !== false) {
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'pgsql:host=localhost;dbname=biblioteca',
-    'username' => 'biblioteca',
-    'password' => 'biblioteca',
+    'dsn' => 'pgsql:host=localhost;dbname=videoyii',
+    'username' => 'videoyii',
+    'password' => 'videoyii',
     'charset' => 'utf8',
 ];
