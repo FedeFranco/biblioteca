@@ -27,9 +27,12 @@ create table usuario(
     token varchar(32)
 );
 
-drop table if exists resenas cascade;
+drop table if exists resena cascade;
 create table resena(
-    id bigserial constraint pk_resenias,
-    titulo varchar(20) not null
+    id bigserial constraint pk_resenias primary key,
+    titulo varchar(20) not null,
+    usuario_id bigint constraint fk_usuario_resenia references public.user(id)
+    on delete no action on update cascade,
+    fecha date default current_timestamp
 
 );
