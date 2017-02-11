@@ -46,7 +46,7 @@ AppAsset::register($this);
             ['label' => 'Socios', 'url' => ['/socios/index']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'items' =>[['label' => 'Loguearse',
-                                            'url' => ['/site/login']],
+                                            'url' => ['/user/security/login']],
                                             ['label' => 'Registrarse',
                                             'url' => ['/user/registration/register']]]]
             ) : (
@@ -63,6 +63,7 @@ AppAsset::register($this);
 
         if (!(Yii::$app->user->isGuest)) {
         array_unshift($items, ['label' => 'Configuración', 'url' => ['usuarios/update']]);
+        array_unshift($items, ['label' => 'Reseña algún libro!', 'url' => ['resenas/resena']]);
         }
 
 

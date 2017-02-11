@@ -51,11 +51,19 @@ class Resena extends \yii\db\ActiveRecord
         ];
     }
 
+    public function resenar($titulo,$cuerpo,$usuario){
+        $this->titulo = $titulo;
+        $this->cuerpo = $cuerpo;
+        $this->usuario_id = $usuario;
+        $this->save();
+        return true;
+    }
+
     /**
      * @return \yii\db\ActiveQuery
      */
     public function getUsuario()
     {
-        return $this->hasOne(User::className(), ['id' => 'usuario_id']);
+        return $this->hasOne(User::className(), ['id' => 'usuario_id'])->inverseOf('resenas');
     }
 }
