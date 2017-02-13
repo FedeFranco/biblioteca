@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use app\models\Libro;
 
 /**
  * This is the model class for table "resena".
@@ -51,9 +52,10 @@ class Resena extends \yii\db\ActiveRecord
         ];
     }
 
-    public function resenar($titulo,$cuerpo,$usuario){
+    public function resenar($titulo,$cuerpo,$libro,$usuario){
         $this->titulo = $titulo;
         $this->cuerpo = $cuerpo;
+        $this->libro_id = Libro::find()->select('id')->where(['titulo' => $libro]);
         $this->usuario_id = $usuario;
         $this->save();
         return true;

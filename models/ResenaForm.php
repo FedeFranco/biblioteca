@@ -6,11 +6,12 @@ class ResenaForm extends Model
 {
     public $titulo;
     public $cuerpo;
+    public $libro;
 
     public function rules()
     {
         return [
-            [['titulo','cuerpo'], 'required'],
+            [['titulo','cuerpo','libro'], 'required'],
         ];
     }
 
@@ -19,6 +20,7 @@ class ResenaForm extends Model
         return [
             'titulo'=> 'Titulo',
             'cuerpo'=> 'Texto de la Reseña',
+            'libro' => 'Libro',
         ];
     }
 }

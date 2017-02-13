@@ -17,9 +17,12 @@ class ResenasController extends \yii\web\Controller
     {
         $model = new ResenaForm;
         if ($model->load(Yii::$app->request->post()) && $model->validate()) {
+
             $al = new Resena;
-            if ($al->resenar($model->titulo,$model->cuerpo, 6)) {
-                return $this->render('resena',['model'=>$model]);
+
+            if ($al->resenar($model->titulo,$model->cuerpo, $model->libro, Yii::$app->user->id)) {
+
+                return $this->redirect(['site/index']);
             }
 
         }else {

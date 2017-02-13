@@ -32,8 +32,10 @@ create table resena(
     id bigserial constraint pk_resenias primary key,
     titulo varchar(20) not null,
     cuerpo text not null,
-    usuario_id bigint constraint fk_usuario_resenia references public.user(id)
-    on delete no action on update cascade,
+    usuario_id bigint constraint fk_usuario_resena references public.user(id)
+                on delete no action on update cascade,
+    libro_id bigint constraint fk_libro_resena references libros(id)
+                on delete no action on update cascade,
     fecha date default current_timestamp
 
 );
