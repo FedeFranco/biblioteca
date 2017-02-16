@@ -3,8 +3,9 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use yii\helpers\Url;
+use yii\web\JsExpression;
 
-$url = Url::to(['resenas/libro']);
+$url = Url::to(['resenas/libros']);
 $urlActual = Url::to(['resenas/resena']);
 $js = <<<EOT
     $('#resenaform-libro').keyup(function() {
@@ -22,7 +23,7 @@ $js = <<<EOT
                 q: q
             },
             success: function (data, status, event) {
-                $('#socios').html(data);
+                $('#lib').html(data);
             }
         });
     });

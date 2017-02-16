@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
 use yii\widgets\Pjax;
+
 ?>
 
 <?php Pjax::begin([
@@ -13,25 +14,26 @@ use yii\widgets\Pjax;
     'columns' => [
         'titulo',
     ],
+
     /*'tableOptions' => [
         'class' => 'table table-bordered table-hover',
     ],*/
 ]) ?>
 
 <?php
-/*$url = Url::to(['resenas/libro']);
-echo <<<EOT
+    $url = Url::to(['resenas/resena']);
+    echo <<<EOT
     <script>
-    $('#sociosGrid tr').click(function (event) {
+  $('#librosGrid tr').click(function (event) {
         var target = event.currentTarget;
         if ($(target).children().length > 1) {
             var obj = $(target).children().first();
             numero = $(obj[0]).text();
-            window.location.assign('$url' + '?numero=' + numero);
+            window.location.assign('$url' + '?titulo=' + titulo);
         }
     });
     </script>
-EOT;*/
+EOT;
 ?>
 
 <?php Pjax::end() ?>
